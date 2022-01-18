@@ -1,0 +1,93 @@
+* Part 1 *
+
+C# in context
+
+When I was studying computer science at university, a fellow student corrected the lecturer about a detail he’d written on the blackboard. The lecturer looked mildly exasperated and answered, “Yes, I know. I was simplifying. I’m obscuring the truth here to demonstrate a bigger truth.” Although I hope I’m not obscuring much in part 1, it’s definitely about the bigger truth.
+
+Most of this book looks at C# close up, occasionally putting it under a microscope to see the finest details. Before we start doing that, chapter 1 pulls back the lens to see the broader sweep of the history of C# and how C# fits into the wider context of computing.
+
+You’ll see some code as an appetizer before I serve the main course of the rest of the book, but the details don’t matter at this stage. This part is more about the ideas and themes of C#’s development to get you in the best frame of mind to appreciate how those ideas are implemented.
+Let’s go!
+
+Survival of the sharpest
+
+This chapter covers
+- How C#’s rapid evolution has made developers more productive
+- Selecting minor versions of C# to use the latest features
+- Being able to run C# in more environments
+- Benefitting from an open and engaged community
+- The book’s focus on old and new C# versions
+
+Choosing the most interesting aspects of C# to introduce here was difficult. Some are fascinating but are rarely used. Others are incredibly important but are now commonplace to C# developers. Features such as async/wait are great in many ways but are hard to describe briefly. Without further ado, let’s look at how far C# has come over time.
+
+1.1 An evolving language
+In previous editions of this book, I provided a single example that showed the evolution of the language over the versions covered by that edition. That’s no longer feasible in a way that would be interesting to read. Although a large application may use almost all of the new features, any single piece of code that’s suitable for the printed page would use only a subset of them.
+
+Instead, in this section I choose what I consider to be the most important themes of C# evolution and give brief examples of improvements. This is far from an exhaustive list of features. It’s also not intended to teach you the features; instead, it’s a reminder of how far features you already know about have improved the language and a tease for features you may not have seen yet.
+
+ If you think some of these features imitate other languages you’re familiar with, you’re almost certainly right. The C# team does not hesitate to take great ideas from other languages and reshape them to feel at home within C#. This is a great thing! F# is particularly worth mentioning as a source of inspiration for many C# features.
+
+/*i*/
+NOTE It’s possible that F#’s greatest impact isn’t what it enables for F# developers but its influence on C#. This isn’t to underplay the value of F# as a language in its own right or to suggest that it shouldn’t be used directly. But currently, the C# community is significantly larger than the F# community, and the C# community owes a debt of gratitude to F# for inspiring the C# team.
+
+Let’s start with one of the most important aspects of C#: its type system.
+
+1.1.1 A helpful type system at large and small scales
+
+C# has been a statically typed language from the start: your code specifies the types of variables, parameters, values returned from methods, and so on. The more precisely you can specify the shape of the data your code accepts and returns, the more the compiler can help you avoid mistakes.
+
+That’s particularly true as the application you’re building grows. If you can see all the code for your whole program on one screen (or at least hold it all in your head at one time), a statically typed language doesn’t have much benefit. As the scale increases, it becomes increasingly important that your code concisely and effectively communicates what it does. You can do that through documentation, but static typing
+lets you communicate in a machine-readable way.
+
+As C# has evolved, its type system has allowed more fine-grained descriptions. The most obvious example of this is generics. In C# 1, you might have had code like this:
+
+public class Bookshelf
+{
+    public IEnumerable Books { get { ... } }
+}
+
+What type is each item in the Books sequence? The type system doesn’t tell you. With generics in C# 2, you can communicate more effectively:
+
+public class Bookshelf
+{
+    public IEnumerable<Book> Books { get { ... } }
+}
+
+C# 2 also brought nullable value types, thereby allowing the absence of information to be expressed effectively without resorting to magic values such as –1 for a collection index or DateTime.MinValue for a date.
+
+C# 7 gave us the ability to tell the compiler that a user-defined struct should be immutable using readonly struct declarations. The primary goal for this feature may have been to improve the efficiency of the code generated by the compiler, but it has additional benefits for communicating intent.
+
+The plans for C# 8 include nullable reference types, which will allow even more communication. Up to this point, nothing in the language lets you express whether a reference (either as a return value, a parameter, or just a local variable) might be null. This leads to error-prone code if you’re not careful and boilerplate validation code if you are careful, neither of which is ideal. C# 8 will expect that anything not explicitly nullable is intended not to be nullable. For example, consider a method declaration like this:
+
+string Method(string x, string? y)
+
+The parameter types indicate that the argument corresponding to x shouldn’t be null but that the argument corresponding to y may be null. The return type indicates that the method won’t return null.
+
+Other changes to the type system in C# are aimed at a smaller scale and focus on how one method might be implemented rather than how different components in a large system relate to each other. C# 3 introduced anonymous types and implicitly typed local variables (var). These help address the downside of some statically typed languages: verbosity. If you need a particular data shape within a single method but nowhere else, creating a whole extra type just for the sake of that method is overkill. Anonymous types allow that data shape to be expressed concisely without losing the benefits of static typing:
+
+var book = new { Title = "Lost in the Snow", Author = "Holly Webb" };
+string title = book.Title;          //Name and type are still
+string author = book.Author;        //checked by the compiler
+
+Anonymous types are primarily used within LINQ queries, but the principle of creating a type just for a single method doesn’t depend on LINQ.
+
+Similarly, it seems redundant to explicitly specify the type of a variable that is initialized in the same statement by calling the constructor of that type. I know which of the following declarations I find cleaner:
+
+Dictionary<string, string> map1 = new Dictionary<string, string>(); // Explicit typing
+var map2 = new Dictionary<string, string>(); // Implicit typing
+
+Although implicit typing is necessary when working with anonymous types, I’ve found it increasingly useful when working with regular types, too. It’s important to distinguish between implicit typing and dynamic typing. The preceding map2 variable is still statically typed, but you didn’t have to write the type explicitly.
+
+Anonymous types help only within a single block of code; for example, you can’t use them as method parameters or return types. C# 7 introduced tuples: value types that effectively act to collect variables together. The framework support for these tuples is relatively simple, but additional language support allows the elements of tuples to be named. For example, instead of the preceding anonymous type, you could use the following:
+
+var book = (title: "Lost in the Snow", author: "Holly Webb");
+Console.WriteLine(book.title);
+
+Tuples can replace anonymous types in some cases but certainly not all. One of their benefits is that they can be used as method parameters and return types. At the moment, I advise that these be kept within the internal API of a program rather than exposed publicly, because tuples represent a simple composition of values rather than encapsulating them. That’s why I still regard them as contributing to simpler code at the implementation level rather than improving overall program design.
+
+I should mention a feature that might come in C# 8: record types. I think of these as named anonymous types to some extent, at least in their simplest form. They’d provide the benefits of anonymous types in terms of removing boilerplate code but then allow those types to gain extra behavior just as regular classes do. Watch this space!
+
+
+1.1.2 Ever more concise code
+
+One of the recurring themes within new features of C# has been the ability to let you express your ideas in ways that are increasingly concise. The type system is part of this, as you’ve seen with anonymous types, but many other features also contribute to this. There are lots of words you might hear for this, especially in terms of what can be removed with the new features in place. C#’s features allow you to reduce ceremony, remove boilerplate code, and avoid cruft. These are just different ways of talking about the same effect. It’s not that any of the now-redundant code was wrong; it was just distracting and unnecessary. Let’s look at a few ways that C# has evolved in this respect.

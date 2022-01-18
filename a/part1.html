@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Eduardo Barbosa">
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="" />
+    <title>Part 1 - C# in context</title>
+    <link rel="stylesheet" type="text/css" href="https://flavioclesio.com/assets/styles.css?version=63f6931">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav>
+            <a href="/">&lt;&lt; Home</a>
+            <a href="/">Part 2 >></a>
+        </nav>
+        <main>
+            <main>
+                <article>
+                    <h1>Part 1 - C# in context</h1>
+                    <p>
+                        When I was studying computer science at university, a fellow student corrected the lecturer
+                        about a detail he’d written on the blackboard. The lecturer looked mildly exasperated and
+                        answered, “Yes, I know. I was simplifying. I’m obscuring the truth here to demonstrate a bigger
+                        truth.” Although I hope I’m not obscuring much in part 1, it’s definitely about the bigger
+                        truth.
+                    </p>
+                    <p>
+                        Most of this book looks at C# close up, occasionally putting it under a microscope to see the
+                        finest details. Before we start doing that, chapter 1 pulls back the lens to see the broader
+                        sweep of the history of C# and how C# fits into the wider context of computing.
+                    </p>
+                    <p>
+                        You’ll see some code as an appetizer before I serve the main course of the rest of the book, but
+                        the details don’t matter at this stage. This part is more about the ideas and themes of C#’s
+                        development to get you in the best frame of mind to appreciate how those ideas are
+                        implemented.
+                    </p>
+                    <p>
+                        Let’s go!
+                    </p>
+                    <br /><br />
+
+                    <h2><strong>1</strong> Survival of the sharpest</h2>
+                    <p>
+                        <strong>This chapter covers</strong>
+                    <ul>
+                        <li>How C#’s rapid evolution has made developers more productive</li>
+                        <li>Selecting minor versions of C# to use the latest features</li>
+                        <li>Being able to run C# in more environments</li>
+                        <li>Benefitting from an open and engaged community</li>
+                        <li>The book’s focus on old and new C# versions</li>
+                    </ul>
+                    </p>
+                    <p>Choosing the most interesting aspects of C# to introduce here was difficult. Some are fascinating
+                        but are rarely used. Others are incredibly important but are now commonplace to C# developers.
+                        Features such as async/wait are great in many ways but are hard to describe briefly. Without
+                        further ado, let’s look at how far C# has come over time.
+                    </p>
+
+                    <h3>1.1 An evolving language</h3>
+                    <p>
+                        In previous editions of this book, I provided a single example that showed the evolution of the
+                        language over the versions covered by that edition. That’s no longer feasible in a way that
+                        would be interesting to read. Although a large application may use almost all of the new
+                        features, any single piece of code that’s suitable for the printed page would use only a subset
+                        of them.
+                    </p>
+                    <p>
+                        Instead, in this section I choose what I consider to be the most important themes of C#
+                        evolution and give brief examples of improvements. This is far from an exhaustive list of
+                        features. It’s also not intended to teach you the features; instead, it’s a reminder of how far
+                        features you already know about have improved the language and a tease for features you may not
+                        have seen yet.
+                    </p>
+                    <p>
+                        If you think some of these features imitate other languages you’re familiar with, you’re almost
+                        certainly right. The C# team does not hesitate to take great ideas from other languages and
+                        reshape them to feel at home within C#. This is a great thing! F# is particularly worth
+                        mentioning as a source of inspiration for many C# features.
+                    </p>
+
+                    <p style="font-style: italic; color: grey;">
+                        NOTE It’s possible that F#’s greatest impact isn’t what it enables for F# developers but its
+                        influence on C#. This isn’t to underplay the value of F# as a language in its own right or to
+                        suggest that it shouldn’t be used directly. But currently, the C# community is significantly
+                        larger than the F# community, and the C# community owes a debt of gratitude to F# for inspiring
+                        the C# team.
+                    </p>
+
+                    <p>
+                        Let’s start with one of the most important aspects of C#: its type system.
+                    </p>
+
+                    <h3>1.1.1 A helpful type system at large and small scales</h3>
+                    <p>
+                        C# has been a statically typed language from the start: your code specifies the types of
+                        variables, parameters, values returned from methods, and so on. The more precisely you can
+                        specify the shape of the data your code accepts and returns, the more the compiler can help you
+                        avoid mistakes.
+                    </p>
+                    <p>
+                        That’s particularly true as the application you’re building grows. If you can see all the code
+                        for your whole program on one screen (or at least hold it all in your head at one time), a
+                        statically typed language doesn’t have much benefit. As the scale increases, it becomes
+                        increasingly important that your code concisely and effectively communicates what it does. You
+                        can do that through documentation, but static typinglets you communicate in a machine-readable
+                        way.
+                    </p>
+                    <p>
+                        As C# has evolved, its type system has allowed more fine-grained descriptions. The most obvious
+                        example of this is generics. In C# 1, you might have had code like this:
+                    </p>
+                    <script src="https://gist.github.com/eduobs/711143c2b13501534436720d0432639d.js"></script>
+
+                    <p>What type is each item in the Books sequence? The type system doesn’t tell you. With generics in
+                        C# 2, you can communicate more effectively:</p>
+
+                    <script src="https://gist.github.com/eduobs/cd284a83d3859b02c32cbcd7ed8e3655.js"></script>
+
+                </article>
+            </main>
+        </main>
+
+        <footer>
+            <p>
+                This content is not licensed under a
+                <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
+            </p>
+        </footer>
+
+    </div>
+</body>
+
+</html>
