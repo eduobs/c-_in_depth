@@ -19,13 +19,13 @@ body{
     font-size:16px;
     font-weight:300;
     /* color:#333; */
-    color: white;
+    color: rgb(228, 225, 225);
     background-color: black;
 }
 h1,h2,h3,h4,h5,h6{
     margin-top:24px;
     margin-bottom:0;
-    font-weight:500
+    font-weight:bold
 }
 h1+*,h2+*,h3+*,h4+*,h5+*,h6+*{
     margin-top:0
@@ -54,7 +54,7 @@ a:visited{
     color:#33c
 }
 nav a,nav a:hover,nav a:visited{
-    color:#333
+    color:rgb(114, 114, 114)
 }
 nav a:not(:first-child){
     margin-left:16px;
