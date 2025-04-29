@@ -18,7 +18,7 @@
             <a href="/c-_in_depth">&lt;&lt; Home</a>
             <a href="part2.html">Part 2 >></a>
         </nav>
-        
+
         <main>
             <main>
                 <article>
@@ -143,6 +143,33 @@
                         not to be nullable. For example, consider a method declaration like this:
                     </p>
                     <script src="https://gist.github.com/eduobs/706c2b19f9dbfbd616c4fe2f4c2110cb.js"></script>
+                    <p>
+                        The parameter types indicate that the argument corresponding to x shouldn’t be null
+                        but that the argument corresponding to y may be null. The return type indicates that
+                        the method won’t return null.
+                    </p>
+                    <p>
+                        Other changes to the type system in C# are aimed at a smaller scale and focus on
+                        how one method might be implemented rather than how different components in a
+                        large system relate to each other. C# 3 introduced <i>anonymous types and implicitly typed
+                            local variables</i> (var). These help address the downside of some statically typed
+                        languages:
+                        verbosity. If you need a particular data shape within a single method but
+                        nowhere else, creating a whole extra type just for the sake of that method is overkill.
+                        Anonymous types allow that data shape to be expressed concisely without losing the
+                        benefits of static typing:
+                    </p>
+                    <script src="https://gist.github.com/eduobs/dd58308825e41cac8aeea0fd83e0b725.js"></script>
+                    <p>
+                        Anonymous types are primarily used within LINQ queries, but the principle of creating a type
+                        just
+                        for a single method doesn’t depend on LINQ.
+                    </p>
+                    <p>
+                        Similarly, it seems redundant to explicitly specify the type of a variable that is initialized in
+                        the same statement by calling the constructor of that type. I know which of
+                        the following declarations I find cleaner:
+                    </p>
                 </article>
             </main>
         </main>
@@ -155,4 +182,5 @@
         </footer>
     </div>
 </body>
+
 </html>
