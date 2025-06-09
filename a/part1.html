@@ -162,13 +162,40 @@
                     <script src="https://gist.github.com/eduobs/dd58308825e41cac8aeea0fd83e0b725.js"></script>
                     <p>
                         Anonymous types are primarily used within LINQ queries, but the principle of creating a type
-                        just
-                        for a single method doesn’t depend on LINQ.
+                        just for a single method doesn’t depend on LINQ.
                     </p>
                     <p>
                         Similarly, it seems redundant to explicitly specify the type of a variable that is initialized in
                         the same statement by calling the constructor of that type. I know which of
                         the following declarations I find cleaner:
+                    </p>
+                    <script src="https://gist.github.com/eduobs/b2e88dcdeb245e5fc6b4c796b9ba78ab.js"></script>
+                    <p>
+                        Although implicit typing is necessary when working with anonymous types, I’ve found it increasingly useful when working with regular types, too.
+                        It’s important to distinguish between <i>implicit</i> typing and <i>dynamic</i> typing. The preceding <b>map2</b> variable is still statically typed, but you didn’t have to write the type explicitly.
+                    </p>
+                    <p>
+                        Anonymous types help only within a single block of code; for example, you can’t
+                        use them as method parameters or return types. <b>C# 7</b> introduced <i>tuples</i>: value types
+                        that effectively act to collect variables together. The framework support for these
+                        tuples is relatively simple, but additional language support allows the elements of
+                        tuples to be named. For example, instead of the preceding anonymous type, you
+                        could use the following:
+                    </p>
+                    <script src="https://gist.github.com/eduobs/0fe233c8f80b10d76924efb2e2b2def7.js"></script>
+                    <p>
+                        Tuples can replace anonymous types in some cases but certainly not all. One of their
+                        benefits is that they <i>can</i> be used as method parameters and return types. At the
+                        moment, I advise that these be kept within the internal API of a program rather than
+                        exposed publicly, because tuples represent a simple composition of values rather than
+                        encapsulating them. That’s why I still regard them as contributing to simpler code at
+                        the implementation level rather than improving overall program design.
+                    </p>
+                    <p>
+                        I should mention a feature that <i>might</i> come in <b>C# 8</b>: <i>record types</i>. 
+                        I think of these as named anonymous types to some extent, at least in their simplest form. 
+                        They’d provide the benefits of anonymous types in terms of removing boilerplate code but then
+                        allow those types to gain extra behavior just as regular classes do. Watch this space!
                     </p>
                 </article>
             </main>
