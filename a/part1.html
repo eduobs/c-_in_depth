@@ -197,6 +197,34 @@
                         They’d provide the benefits of anonymous types in terms of removing boilerplate code but then
                         allow those types to gain extra behavior just as regular classes do. Watch this space!
                     </p>
+
+                    <h3>1.1.2 Ever more concise code</h3>
+                    <p>
+                        One of the recurring themes within new features of C# has been the ability to let you
+                        express your ideas in ways that are increasingly concise. The type system is part of this,
+                        as you’ve seen with anonymous types, but many other features also contribute to this.
+                        There are lots of words you might hear for this, especially in terms of what can be
+                        removed with the new features in place. C#’s features allow you to reduce <i>ceremony</i>,
+                        remove <i>boilerplate</i> code, and avoid <i>cruft</i>. These are just different ways of talking about
+                        the same effect. It’s not that any of the now-redundant code was wrong; it was just distracting
+                        and unnecessary. Let’s look at a few ways that C# has evolved in this respect.
+                    </p>
+                    <p>
+                        CONSTRUCTION AND INITIALIZATION
+                        <br />
+                        First, we’ll consider how you create and initialize objects. Delegates have probably
+                        evolved the most and in multiple stages. In C# 1, you had to write a separate method
+                        for the delegate to refer to and then create the delegate itself in a long-winded way.
+                        For example, here’s what you’d write to subscribe a new event handler to a button’s
+                        <b>Click</b> event in C# 1:
+                    </p>
+                    <script src="https://gist.github.com/eduobs/3633a277cc81ea8ae40e1f849cc72047.js"></script>
+                    <p>
+                        C# 2 introduced <i>method group conversions</i> and <i>anonymous methods</i>. 
+                        If you wanted to keep the <b>HandleButtonClick</b> method, method group conversions would allow you to
+                        change the preceding code to the following:
+                    </p>
+                    <script src="https://gist.github.com/eduobs/17f109e7a5180523ad550e14abc58838.js"></script>
                 </article>
             </main>
         </main>
